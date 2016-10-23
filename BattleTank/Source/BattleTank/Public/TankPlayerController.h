@@ -14,8 +14,21 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 	
-public:
+private:
 	ATank* GetControlledTank() const;
 	
+	virtual void Tick(float DeltaSeconds) override;
 	virtual void BeginPlay() override;
+
+	void AimTowardsCrosshair();
+
+	bool GetSightRayHitLocation(FVector& HitLocation) const;
+
+	UPROPERTY(EditAnywhere)
+		float CrossHairXLocation = 0.5;
+
+	UPROPERTY(EditAnywhere)
+		float CrossHairYLocation = 0.3333;
+
+	bool  GetLookDirction(FVector2D ScreenLocation, FVector& LookDirction) const;
 };
